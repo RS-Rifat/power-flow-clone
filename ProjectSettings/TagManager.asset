@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - EndPoint
+  - +24
+  - +62
+  - +99
+  - fan1
+  - fan2
   layers:
   - Default
   - TransparentFX

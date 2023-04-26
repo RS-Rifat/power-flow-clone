@@ -8,12 +8,16 @@ public class SpondCharge : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 10;
 
-    void Update()
+    private void Start()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
-        }
+        StartCoroutine(WaitForShoot());
+    }
+
+    private IEnumerator WaitForShoot()
+    {
+        var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+        yield return new WaitForSeconds(.7f);
+        StartCoroutine(WaitForShoot());
     }
 }
